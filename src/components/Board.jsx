@@ -2,21 +2,15 @@
 import Square from './Square';
 
 export default function Board({ xIsNext, squares, onPlay }) {
-  // const [squares, setSquares] = useState(Array(9).fill(null));
-  // const [xIsNext, setXIsNext] = useState(true);
-
   function handleClick(i) {
     if (squares[i] || calculateWinner(squares)) return; // bila kotak sudah terisi || ada yang menang, return
     const nextSquares = squares.slice();
 
     nextSquares[i] = xIsNext ? 'X' : 'O';
-    // setSquares(nextSquares);
-    // setXIsNext(!xIsNext);
     onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
-  // console.log(winner);
   let status = '';
   if (winner) {
     status = 'Winner: ' + winner;
@@ -55,10 +49,6 @@ function calculateWinner(squares) {
   ];
 
   for (let i = 0; i < lines.length; i++) {
-    // const a = lines[i][0];
-    // const b = lines[i][1];
-    // const c = lines[i][2];
-
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
